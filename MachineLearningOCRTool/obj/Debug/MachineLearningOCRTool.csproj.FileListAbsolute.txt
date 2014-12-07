@@ -8,7 +8,6 @@ C:\Users\Leo\Desktop\ml-ocr-tool-master\ml-ocr-tool-master\MachineLearningOCRToo
 C:\Users\Leo\Desktop\ml-ocr-tool-master\ml-ocr-tool-master\MachineLearningOCRTool\bin\Debug\AForge.Math.dll
 C:\Users\Leo\Desktop\ml-ocr-tool-master\ml-ocr-tool-master\MachineLearningOCRTool\bin\Debug\MathNet.Numerics.xml
 C:\Users\Leo\Desktop\ml-ocr-tool-master\ml-ocr-tool-master\MachineLearningOCRTool\bin\Debug\MathNet.Numerics.IO.xml
-C:\Users\Leo\Desktop\ml-ocr-tool-master\ml-ocr-tool-master\MachineLearningOCRTool\obj\Debug\MachineLearningOCRTool.csprojResolveAssemblyReference.cache
 C:\Users\Leo\Desktop\ml-ocr-tool-master\ml-ocr-tool-master\MachineLearningOCRTool\obj\Debug\MachineLearningOCRTool.Controls.BlobPanel.resources
 C:\Users\Leo\Desktop\ml-ocr-tool-master\ml-ocr-tool-master\MachineLearningOCRTool\obj\Debug\MachineLearningOCRTool.Views.OCRTool.resources
 C:\Users\Leo\Desktop\ml-ocr-tool-master\ml-ocr-tool-master\MachineLearningOCRTool\obj\Debug\MachineLearningOCRTool.Properties.Resources.resources
@@ -17,3 +16,4 @@ C:\Users\Leo\Desktop\ml-ocr-tool-master\ml-ocr-tool-master\MachineLearningOCRToo
 C:\Users\Leo\Desktop\ml-ocr-tool-master\ml-ocr-tool-master\MachineLearningOCRTool\obj\Debug\MachineLearningOCRTool.pdb
 C:\Users\Leo\Desktop\ml-ocr-tool-master\ml-ocr-tool-master\MachineLearningOCRTool\bin\Debug\encog-core-cs.dll
 C:\Users\Leo\Desktop\ml-ocr-tool-master\ml-ocr-tool-master\MachineLearningOCRTool\bin\Debug\encog-core-cs.xml
+C:\Users\Leo\Desktop\ml-ocr-tool-master\ml-ocr-tool-master\MachineLearningOCRTool\obj\Debug\MachineLearningOCRTool.csprojResolveAssemblyReference.cache

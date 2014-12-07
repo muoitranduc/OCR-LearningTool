@@ -20,6 +20,11 @@ using Encog.Neural.Networks.Training.Propagation.Back;
 using Encog.Neural.Networks.Training.Propagation.Resilient;
 using Encog.ML.SVM;
 using Encog.ML.SVM.Training;
+using Encog.ML.Data.Versatile.Columns;
+using Encog.ML.Data.Versatile.Sources;
+using Encog.ML.Factory;
+using Encog.ML.Model;
+using Encog.Util.CSV;
 
 namespace MachineLearningOCRTool.Views
 {
@@ -367,7 +372,7 @@ namespace MachineLearningOCRTool.Views
                 for (int j = 0; j < newImage.Width; j++)
                 {
                     Color pixel = newImage.GetPixel(i, j);
-                    sw.Write(Common.GetColorAverage(pixel) + ",");
+                    sw.Write(Common.GetGrayScale(pixel) + ",");
                 }
             }
 
@@ -404,39 +409,60 @@ namespace MachineLearningOCRTool.Views
             for (int i = 0; i < rows; i++)
             {
                 inputNN[i] = new double[columns-1];
-                idealNN[i] = new double[1];
+                idealNN[i] = new double[26];
                 for (int j = 0; j < columns - 1; j++)
                 {
                     inputNN[i][j] = thetas[i][j];
                 }
-                idealNN[i][0] = thetas[i][columns - 1];
+                for (int j = 0; j < 26; j++)
+                {
+                    idealNN[i][j] = 0;
+                }
+                int k = Convert.ToInt32(thetas[i][columns - 1]);
+                idealNN[i][k-1] = 1;
             }
+            
             IMLDataSet trainingSet = new BasicMLDataSet(inputNN, idealNN);
-            var svm = new SupportVectorMachine(400, false); 
-            IMLTrain train = new SVMSearchTrain(svm, trainingSet);
+            //var svm = new SupportVectorMachine(780, false);
+            //Console.WriteLine(svm.InputCount + " " + svm.OutputCount);
+            //IMLTrain train = new SVMSearchTrain(svm, trainingSet);
+            BasicNetwork network = new BasicNetwork();
+            network.AddLayer(new BasicLayer(null, true, 400));
+            network.AddLayer(new BasicLayer(new ActivationSigmoid(), true, 64));
+            network.AddLayer(new BasicLayer(new ActivationSigmoid(), true, 26));
+            network.Structure.FinalizeStructure();
+            network.Reset();
+            IMLTrain train = new ResilientPropagation(network, trainingSet);
             int epoch = 1;
             do
             {
                 train.Iteration();
                 Console.WriteLine(@"Epoch #" + epoch + @" Error:" + train.Error);
                 epoch++;
-            } while (train.Error > 0.01 && epoch < 1000);
+            } while (train.Error > 0.01 && epoch < 500);
 
 
             foreach (BlobPanel blob in pictureBox1.Controls.OfType<BlobPanel>())
             {
                 blob.Description = string.Empty;
-                //Vector xs = GetBlobPixels(blob);
-                double[] x = new double[400];
-                x = GetBlobPixels(blob);
-                IMLData testSet = new BasicMLData(x, true);
-                IMLData output = svm.Compute(testSet);
-                int res = (int) Math.Round(output[0]);
-                Console.WriteLine(output[0]);
-                blob.Title = Common.Letters[res-1];
+                double[] inputTest = new double[400];
+                inputTest = GetBlobPixels(blob);
+                IMLData testSet = new BasicMLData(inputTest, true);
+                IMLData output = network.Compute(testSet);
+                double max = -1.0;
+                int res = -1;
+                for (int j = 0; j < output.Count; j++)
+                {
+                    if (max < output[j])
+                    {
+                        max = output[j];
+                        res = j;
+                    }
+                }
+                Console.WriteLine();
+                blob.Title = Common.Letters[res];
             }
-
-            pictureBox1.Invalidate();
+                pictureBox1.Invalidate();
         }
 
         private double[] GetBlobPixels(BlobPanel blob)
@@ -454,7 +480,7 @@ namespace MachineLearningOCRTool.Views
                 for (int j = 0; j < newImage.Width; j++)
                 {
                     Color pixel = newImage.GetPixel(i, j);
-                    xs[i*newImage.Width + j] = Common.GetColorAverage(pixel);
+                    xs[i*newImage.Width + j] = Common.GetGrayScale(pixel);
                 }
             }
 

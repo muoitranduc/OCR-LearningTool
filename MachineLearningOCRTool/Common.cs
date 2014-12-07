@@ -33,7 +33,16 @@ namespace MachineLearningOCRTool
 
         public static int GetColorAverage(Color color)
         {
-            return (color.R + color.G + color.B)/3;
+            return (color.R + color.G + color.B) / 3;
+        }
+        public static int GetGrayScale(Color color)
+        {
+            int intensity = (color.R + color.G + color.B) / 3;
+            if (intensity > 200)
+            {
+                return 0;
+            }
+            return 1;
         }
     }
 }

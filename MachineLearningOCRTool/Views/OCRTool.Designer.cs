@@ -634,7 +634,7 @@
             this.Controls.Add(this.txtFile);
             this.Controls.Add(this.btnOpenFile);
             this.Name = "OCRTool";
-            this.Text = "OCR Helper Tool";
+            this.Text = "Handwriting Scanner with OCR";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
