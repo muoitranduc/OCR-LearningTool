@@ -18,13 +18,6 @@ using Encog.Neural.Networks;
 using Encog.Neural.Networks.Layers;
 using Encog.Neural.Networks.Training.Propagation.Back;
 using Encog.Neural.Networks.Training.Propagation.Resilient;
-using Encog.ML.SVM;
-using Encog.ML.SVM.Training;
-using Encog.ML.Data.Versatile.Columns;
-using Encog.ML.Data.Versatile.Sources;
-using Encog.ML.Factory;
-using Encog.ML.Model;
-using Encog.Util.CSV;
 
 namespace MachineLearningOCRTool.Views
 {
@@ -37,6 +30,9 @@ namespace MachineLearningOCRTool.Views
 
         private Bitmap m_original;
         private Bitmap m_binarized;
+        private bool isFromMouse = false;
+        private System.Drawing.Image cache;
+        private BasicNetwork network;
 
         #endregion
 
@@ -64,7 +60,6 @@ namespace MachineLearningOCRTool.Views
             {
                 txtOutput.Text = Properties.Settings.Default.OutputFile;
             }
-
         }
 
         #region Methods
@@ -73,14 +68,19 @@ namespace MachineLearningOCRTool.Views
         {
             m_selectedBlobs.Clear();
             pictureBox1.Controls.Clear();
-            pictureBox1.Image = null;
-
             if (m_original != null)
                 m_original.Dispose();
             if (m_binarized != null)
                 m_binarized.Dispose();
-
-            m_original = new Bitmap(txtFile.Text);
+            if (!isFromMouse)
+            {
+                m_original = new Bitmap(txtFile.Text);
+            }
+            else
+            {
+                m_original = new Bitmap(cache);
+            }
+            pictureBox1.Image = null;
 
             // create grayscale filter (BT709)
             Grayscale filter = new Grayscale(0.2125, 0.7154, 0.0721);
@@ -383,7 +383,7 @@ namespace MachineLearningOCRTool.Views
         /// <summary>
         /// Load the model from the file and predict.
         /// </summary>
-        private void LoadModelAndPredict()
+        private void LoadModel()
         {
             if (!File.Exists(txtModelParams.Text))
             {
@@ -391,13 +391,6 @@ namespace MachineLearningOCRTool.Views
                 return;
             }
 
-            // Check if the user forgot to choose the back color.
-            if (txtExtractedBackColor.Value == 0)
-            {
-                DialogResult dr = MessageBox.Show("Extraction back color is black, do you want to continue with prediction?", "Back Color", MessageBoxButtons.YesNo);
-                if (dr == DialogResult.No)
-                    return;
-            }
             // Get the model params.
             //Matrix thetas = GetModelParamsFromFile();
 
@@ -423,10 +416,7 @@ namespace MachineLearningOCRTool.Views
             }
             
             IMLDataSet trainingSet = new BasicMLDataSet(inputNN, idealNN);
-            //var svm = new SupportVectorMachine(780, false);
-            //Console.WriteLine(svm.InputCount + " " + svm.OutputCount);
-            //IMLTrain train = new SVMSearchTrain(svm, trainingSet);
-            BasicNetwork network = new BasicNetwork();
+            network = new BasicNetwork();
             network.AddLayer(new BasicLayer(null, true, 400));
             network.AddLayer(new BasicLayer(new ActivationSigmoid(), true, 64));
             network.AddLayer(new BasicLayer(new ActivationSigmoid(), true, 26));
@@ -439,9 +429,18 @@ namespace MachineLearningOCRTool.Views
                 train.Iteration();
                 Console.WriteLine(@"Epoch #" + epoch + @" Error:" + train.Error);
                 epoch++;
-            } while (train.Error > 0.01 && epoch < 500);
+            } while (train.Error > 0.01 && epoch < 100);
+            MessageBox.Show("ANN is ready to recognize!");
+        }
 
-
+        private void Recognize()
+        {
+            if (txtExtractedBackColor.Value == 0)
+            {
+                DialogResult dr = MessageBox.Show("Extraction back color is black, do you want to continue with that?", "Extract Back Color", MessageBoxButtons.YesNo);
+                if (dr == DialogResult.No)
+                    return;
+            }
             foreach (BlobPanel blob in pictureBox1.Controls.OfType<BlobPanel>())
             {
                 blob.Description = string.Empty;
@@ -459,10 +458,10 @@ namespace MachineLearningOCRTool.Views
                         res = j;
                     }
                 }
-                Console.WriteLine();
                 blob.Title = Common.Letters[res];
+                Console.WriteLine(blob.Title);
             }
-                pictureBox1.Invalidate();
+            pictureBox1.Invalidate();
         }
 
         private double[] GetBlobPixels(BlobPanel blob)
@@ -583,6 +582,7 @@ namespace MachineLearningOCRTool.Views
 
         private void button1_Click(object sender, EventArgs e)
         {
+            isFromMouse = false;
             ProcessImage();
         }
 
@@ -655,26 +655,6 @@ namespace MachineLearningOCRTool.Views
             pictureBox1.Image = chkShowBinarize.Checked ? m_binarized : m_original;
         }
 
-        private void btnMoveUp_Click(object sender, EventArgs e)
-        {
-            MoveSelectedBlobs(0, -1 * (int)txtResizeInterval.Value);
-        }
-
-        private void btnMoveRight_Click(object sender, EventArgs e)
-        {
-            MoveSelectedBlobs((int)txtResizeInterval.Value, 0);
-        }
-
-        private void btnMoveDown_Click(object sender, EventArgs e)
-        {
-            MoveSelectedBlobs(0, (int)txtResizeInterval.Value);
-        }
-
-        private void btnMoveLeft_Click(object sender, EventArgs e)
-        {
-            MoveSelectedBlobs(-1 * (int)txtResizeInterval.Value, 0);
-        }
-
         private void chkShowRows_CheckedChanged(object sender, EventArgs e)
         {
             pictureBox1.Invalidate();
@@ -688,7 +668,7 @@ namespace MachineLearningOCRTool.Views
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             // Here we take a 3x3 average of the picture color.
-
+            
             int sumColor = 0;
             Point mouse = pictureBox1.PointToClient(MousePosition);
             for (int i = 0; i < 3; i++)
@@ -709,9 +689,49 @@ namespace MachineLearningOCRTool.Views
 
         private void btnPredict_Click(object sender, EventArgs e)
         {
-            LoadModelAndPredict();
+            LoadModel();
         }
 
         #endregion
+
+        private void pictureBox1_DragDrop(object sender, DragEventArgs e)
+        {
+            pictureBox1.Image = (System.Drawing.Image)e.Data.GetData(DataFormats.Bitmap);
+        }
+
+        private void OCRTool_Load(object sender, EventArgs e)
+        {
+            pictureBox1.AllowDrop = true;
+
+        }
+
+        private void pictureBox1_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.Copy;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (Clipboard.ContainsImage())
+            {
+                //pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+                pictureBox1.Image = Clipboard.GetImage();
+                cache = pictureBox1.Image;
+                isFromMouse = true;
+                ProcessImage();
+            }
+            
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ProcessImage();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Recognize();
+        }
+
     }
 }

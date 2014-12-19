@@ -17,3 +17,7 @@ C:\Users\Leo\Desktop\ml-ocr-tool-master\ml-ocr-tool-master\MachineLearningOCRToo
 C:\Users\Leo\Desktop\ml-ocr-tool-master\ml-ocr-tool-master\MachineLearningOCRTool\bin\Debug\encog-core-cs.dll
 C:\Users\Leo\Desktop\ml-ocr-tool-master\ml-ocr-tool-master\MachineLearningOCRTool\bin\Debug\encog-core-cs.xml
 C:\Users\Leo\Desktop\ml-ocr-tool-master\ml-ocr-tool-master\MachineLearningOCRTool\obj\Debug\MachineLearningOCRTool.csprojResolveAssemblyReference.cache
+C:\Users\Leo\Desktop\ml-ocr-tool-master\ml-ocr-tool-master\MachineLearningOCRTool\bin\Debug\MachineLearningOCRTool.exe.manifest
+C:\Users\Leo\Desktop\ml-ocr-tool-master\ml-ocr-tool-master\MachineLearningOCRTool\bin\Debug\MachineLearningOCRTool.application
+C:\Users\Leo\Desktop\ml-ocr-tool-master\ml-ocr-tool-master\MachineLearningOCRTool\obj\Debug\MachineLearningOCRTool.exe.manifest
+C:\Users\Leo\Desktop\ml-ocr-tool-master\ml-ocr-tool-master\MachineLearningOCRTool\obj\Debug\MachineLearningOCRTool.application

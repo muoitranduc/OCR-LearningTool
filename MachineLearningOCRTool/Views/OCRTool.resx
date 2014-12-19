@@ -123,6 +123,9 @@
   <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>157, 17</value>
   </metadata>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>157, 17</value>
+  </metadata>
   <data name="label3.ToolTip" xml:space="preserve">
     <value>Sometimes you want to merge two near blobs
 that do not intersect, in order to do this those
@@ -145,5 +148,34 @@ for the added area. If you click on any place on the
 image a sample color will be put here, so the newly
 backgournd color will match the existsing picture
 background color.</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAEBAAAAEACABoBQAAFgAAACgAAAAQAAAAIAAAAAEACAAAAAAAQAUAAAAAAAAAAAAAAAEAAAAB
+        AAABBAcAEkqMAB555gAggfQALIf0ACuH9ACDuPgA7PT+ADmP9QAkg/QAibz5AMng/AAqgegAE06TAAEF
+        CQASSooAIIP0ACyD6AC8vscArr/XAPX5/gB7tvgAtdb7ACOF9ACPwfkA2ur9AI3A+QC/3PwAE0+TAB16
+        4QAghfUANYbiANvY2ADkxq0A0cCzACmK9QCTxPoA6PL9AIK7+QC11/sAHn/rAB+D7wAgh/UAWJvkAM+b
+        bQDGhk8A1LadAHi29wCt0/sAIYj1AKDM+gDU5/0AJYr1AB+F7wAgifUAnMv6APr08ADRnnIAj4eFAKrP
+        9QDi7/0Ag775AKrS+wC62vsAHofvAB+L9QAijfUA6vT+AP///wD8+PYA1KV9ANKhdwDG2u8AIIz1ALHW
+        +wDJ4/wAlsn6AKPQ+wAeifAAH432AF+u+AD0+/cA/fv6ANitiQDOl2gAz9nkAIjD+gCezvsAHovwAB+P
+        9gCx2PsA3/PmALblxQC55sgA2PHgAPb79wDdt5YAvIhcAESN0ADB4PwAu938AB6O8AArl/YA9vr+AOj2
+        7ADK7NUAuOXHAKXftwDi9OgA4cGkAMCGVADp1sUAn9D7AB+S9gAekPEAdLz6AP7+/gDRnXEA27KQAP79
+        /QD3/PkAyevUAPr9+wDmy7MAxoZQANqxjgCGrM0AH5T2AB+U9wAgk/EAxuT8APnz7QDr1MEA8ODRAOzW
+        xADQnG8A7tvKAOvVwgD27eUA9+7nAHedvAAhl/cARqXxAP3+/gDjxKkA6M64APjx6gDz5doA8uPXALXJ
+        2gDUvqoAY6PXADCd9wBSqfEA1ev9APDf0ADs18YA9/DpANOidwD6/P4Az+j8APj8/gBXr/cAYbP3AKnW
+        +wBDpvcASJ3iAE+r9gBpt/cAqdb6AOjz/QD8+fcA9uzkAL/g+wDr9f4AxOP8AJXM+QCc0PoAaLb3AHzA
+        +ABLpOwAM2KJAF6x9gBfsvYAhcT4AMDg+wD0+f4Ay+b8AIPD9wBktPYAi8f4AGCy9gA3aZMAAgQFADxn
+        iwBnrOYAbbb0AG+39ABssOgAP2yRAAMFBwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAECAwQFBgcICQMKCwwNDg8QERITFBUWFxgZGhsQEBwdHh8gISIjJCUmJx4eHh4oKSoqKywt
+        Li8wMTIzNDEqKjU2Njc4OS06Ozw9PjY+PzZAQUJDREVGLUdISUpLTE1BTk9QRFFEUlMtVFVWV09PT1hZ
+        WltcXV5fYC1hYmNkWVllZmdEaGlqa2xtLW5vcHFxcnN0dXZ3eHl6RHt8fX5/gIGCg4SFhoeIREREiYqL
+        jI2Oj5CRkpMtlERERESVlpeYmZp3m5ydnnSfoKGPoqOkpaanqKmqq6xEra6vsLGys7S1tra2t7i5urm7
+        vLa9vr/AwcLDxMTExMXFxMTExMbHyAAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA
+        //8AAP//AAD//wAA//8AAP//AAD//wAA//8=
+</value>
   </data>
 </root>

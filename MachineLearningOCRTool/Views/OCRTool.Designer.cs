@@ -48,19 +48,12 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtBinThershold = new System.Windows.Forms.NumericUpDown();
             this.chkShowBinarize = new System.Windows.Forms.CheckBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtResizeInterval = new System.Windows.Forms.NumericUpDown();
-            this.btnResRight = new System.Windows.Forms.Button();
-            this.btnResLeft = new System.Windows.Forms.Button();
-            this.btnResDown = new System.Windows.Forms.Button();
-            this.btnResUp = new System.Windows.Forms.Button();
             this.chkShowRows = new System.Windows.Forms.CheckBox();
             this.btnExport = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.txtOutput = new System.Windows.Forms.TextBox();
-            this.btnPredict = new System.Windows.Forms.Button();
+            this.btnTrain = new System.Windows.Forms.Button();
             this.txtModelParams = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtExtractedBackColor = new System.Windows.Forms.NumericUpDown();
@@ -71,6 +64,9 @@
             this.label11 = new System.Windows.Forms.Label();
             this.txtExportSize = new System.Windows.Forms.NumericUpDown();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtPostMergeFilter)).BeginInit();
@@ -78,8 +74,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtHeightMergeSense)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWidthMergeSense)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBinThershold)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtResizeInterval)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtExtractedBackColor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtExportSize)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -116,27 +110,26 @@
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.pictureBox1.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox1_DragDrop);
+            this.pictureBox1.DragEnter += new System.Windows.Forms.DragEventHandler(this.pictureBox1_DragEnter);
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Location = new System.Drawing.Point(12, 61);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(842, 665);
+            this.panel1.Size = new System.Drawing.Size(842, 575);
             this.panel1.TabIndex = 3;
             // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(318, 5);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(106, 23);
             this.button1.TabIndex = 4;
-            this.button1.Text = "(Re)Process";
+            this.button1.Text = "Load From File";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -215,7 +208,7 @@
             // 
             this.lblSelected.AutoSize = true;
             this.lblSelected.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.lblSelected.Location = new System.Drawing.Point(460, 36);
+            this.lblSelected.Location = new System.Drawing.Point(741, 32);
             this.lblSelected.Name = "lblSelected";
             this.lblSelected.Size = new System.Drawing.Size(113, 15);
             this.lblSelected.TabIndex = 10;
@@ -338,85 +331,6 @@
             this.chkShowBinarize.UseVisualStyleBackColor = true;
             this.chkShowBinarize.CheckedChanged += new System.EventHandler(this.chkShowBinarize_CheckedChanged);
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.txtResizeInterval);
-            this.groupBox1.Controls.Add(this.btnResRight);
-            this.groupBox1.Controls.Add(this.btnResLeft);
-            this.groupBox1.Controls.Add(this.btnResDown);
-            this.groupBox1.Controls.Add(this.btnResUp);
-            this.groupBox1.Location = new System.Drawing.Point(864, 283);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(150, 114);
-            this.groupBox1.TabIndex = 18;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Move Selected Blobs";
-            this.toolTip1.SetToolTip(this.groupBox1, "Move the selected blobs.\r\nIn order to change the size of the blob hover the\r\nblob" +
-        " edge and drag.");
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 21);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(45, 13);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "Interval:";
-            // 
-            // txtResizeInterval
-            // 
-            this.txtResizeInterval.Location = new System.Drawing.Point(57, 19);
-            this.txtResizeInterval.Name = "txtResizeInterval";
-            this.txtResizeInterval.Size = new System.Drawing.Size(37, 20);
-            this.txtResizeInterval.TabIndex = 4;
-            this.txtResizeInterval.Value = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            // 
-            // btnResRight
-            // 
-            this.btnResRight.Location = new System.Drawing.Point(92, 65);
-            this.btnResRight.Name = "btnResRight";
-            this.btnResRight.Size = new System.Drawing.Size(31, 23);
-            this.btnResRight.TabIndex = 3;
-            this.btnResRight.Text = ">";
-            this.btnResRight.UseVisualStyleBackColor = true;
-            this.btnResRight.Click += new System.EventHandler(this.btnMoveRight_Click);
-            // 
-            // btnResLeft
-            // 
-            this.btnResLeft.Location = new System.Drawing.Point(34, 65);
-            this.btnResLeft.Name = "btnResLeft";
-            this.btnResLeft.Size = new System.Drawing.Size(31, 23);
-            this.btnResLeft.TabIndex = 2;
-            this.btnResLeft.Text = "<";
-            this.btnResLeft.UseVisualStyleBackColor = true;
-            this.btnResLeft.Click += new System.EventHandler(this.btnMoveLeft_Click);
-            // 
-            // btnResDown
-            // 
-            this.btnResDown.Location = new System.Drawing.Point(63, 84);
-            this.btnResDown.Name = "btnResDown";
-            this.btnResDown.Size = new System.Drawing.Size(31, 23);
-            this.btnResDown.TabIndex = 1;
-            this.btnResDown.Text = "v";
-            this.btnResDown.UseVisualStyleBackColor = true;
-            this.btnResDown.Click += new System.EventHandler(this.btnMoveDown_Click);
-            // 
-            // btnResUp
-            // 
-            this.btnResUp.Location = new System.Drawing.Point(63, 45);
-            this.btnResUp.Name = "btnResUp";
-            this.btnResUp.Size = new System.Drawing.Size(31, 23);
-            this.btnResUp.TabIndex = 0;
-            this.btnResUp.Text = "^";
-            this.btnResUp.UseVisualStyleBackColor = true;
-            this.btnResUp.Click += new System.EventHandler(this.btnMoveUp_Click);
-            // 
             // chkShowRows
             // 
             this.chkShowRows.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -470,17 +384,17 @@
             this.txtOutput.Size = new System.Drawing.Size(156, 20);
             this.txtOutput.TabIndex = 24;
             // 
-            // btnPredict
+            // btnTrain
             // 
-            this.btnPredict.Location = new System.Drawing.Point(318, 36);
-            this.btnPredict.Name = "btnPredict";
-            this.btnPredict.Size = new System.Drawing.Size(75, 23);
-            this.btnPredict.TabIndex = 27;
-            this.btnPredict.Text = "Load Model";
-            this.toolTip1.SetToolTip(this.btnPredict, "Loads model parameters and runs the model\r\non the current image trying to identif" +
+            this.btnTrain.Location = new System.Drawing.Point(318, 36);
+            this.btnTrain.Name = "btnTrain";
+            this.btnTrain.Size = new System.Drawing.Size(106, 23);
+            this.btnTrain.TabIndex = 27;
+            this.btnTrain.Text = "Train ANN";
+            this.toolTip1.SetToolTip(this.btnTrain, "Loads model parameters and runs the model\r\non the current image trying to identif" +
         "y the lettes.");
-            this.btnPredict.UseVisualStyleBackColor = true;
-            this.btnPredict.Click += new System.EventHandler(this.btnPredict_Click);
+            this.btnTrain.UseVisualStyleBackColor = true;
+            this.btnTrain.Click += new System.EventHandler(this.btnPredict_Click);
             // 
             // txtModelParams
             // 
@@ -523,9 +437,9 @@
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(5, 38);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(77, 13);
+            this.label10.Size = new System.Drawing.Size(60, 13);
             this.label10.TabIndex = 31;
-            this.label10.Text = "Model Params:";
+            this.label10.Text = "Input ANN:";
             // 
             // btnOpenModelFile
             // 
@@ -594,18 +508,53 @@
             this.groupBox2.Controls.Add(this.txtExportSize);
             this.groupBox2.Controls.Add(this.txtOutput);
             this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Location = new System.Drawing.Point(864, 414);
+            this.groupBox2.Location = new System.Drawing.Point(866, 267);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(207, 117);
             this.groupBox2.TabIndex = 37;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Export";
             // 
+            // button3
+            // 
+            this.button3.AccessibleName = "";
+            this.button3.Location = new System.Drawing.Point(452, 5);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(106, 23);
+            this.button3.TabIndex = 38;
+            this.button3.Text = "Load From Mouse";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(452, 35);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(106, 23);
+            this.button2.TabIndex = 39;
+            this.button2.Text = "Re(Process)";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button4
+            // 
+            this.button4.AutoSize = true;
+            this.button4.Location = new System.Drawing.Point(617, 5);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(106, 51);
+            this.button4.TabIndex = 40;
+            this.button4.Text = "Recognize";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // OCRTool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1083, 738);
+            this.ClientSize = new System.Drawing.Size(1083, 656);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.btnOpenModelFile);
@@ -613,10 +562,9 @@
             this.Controls.Add(this.txtExtractedBackColor);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txtModelParams);
-            this.Controls.Add(this.btnPredict);
+            this.Controls.Add(this.btnTrain);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.chkShowRows);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.chkShowBinarize);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtBinThershold);
@@ -633,8 +581,10 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.txtFile);
             this.Controls.Add(this.btnOpenFile);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "OCRTool";
             this.Text = "Handwriting Scanner with OCR";
+            this.Load += new System.EventHandler(this.OCRTool_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -643,9 +593,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtHeightMergeSense)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWidthMergeSense)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBinThershold)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtResizeInterval)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtExtractedBackColor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtExportSize)).EndInit();
             this.groupBox2.ResumeLayout(false);
@@ -675,19 +622,12 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.NumericUpDown txtBinThershold;
         private System.Windows.Forms.CheckBox chkShowBinarize;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button btnResRight;
-        private System.Windows.Forms.Button btnResLeft;
-        private System.Windows.Forms.Button btnResDown;
-        private System.Windows.Forms.Button btnResUp;
-        private System.Windows.Forms.NumericUpDown txtResizeInterval;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckBox chkShowRows;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtOutput;
-        private System.Windows.Forms.Button btnPredict;
+        private System.Windows.Forms.Button btnTrain;
         private System.Windows.Forms.TextBox txtModelParams;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.NumericUpDown txtExtractedBackColor;
@@ -698,5 +638,8 @@
         private System.Windows.Forms.NumericUpDown txtExportSize;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button4;
     }
 }
